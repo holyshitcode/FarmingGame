@@ -21,4 +21,10 @@ public class ItemService {
     public List<Item> findAll() {
         return itemRepository.findAll();
     }
+    public Item update(Long id,Item item) {
+        return itemRepository.update(id,item);
+    }
+    public void delete(Long id) {
+        itemRepository.delete(id);
+    }
 }

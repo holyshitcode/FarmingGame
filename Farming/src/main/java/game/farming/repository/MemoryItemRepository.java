@@ -29,4 +29,16 @@ public class MemoryItemRepository implements ItemRepository {
     public List<Item> findAll() {
         return new ArrayList<>(items.values());
     }
+    @Override
+    public Item update(Long id,Item updateParam) {
+        Item findItem = findById(id);
+        findItem.setName(updateParam.getName());
+        findItem.setPrice(updateParam.getPrice());
+        findItem.setDescription(updateParam.getDescription());
+        return findItem;
+    }
+    @Override
+    public void delete(Long id) {
+        items.remove(id);
+    }
 }

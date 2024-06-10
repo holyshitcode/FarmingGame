@@ -42,10 +42,10 @@
         </thead>
         <tbody>
         <tr th:each="item : ${items}">
-            <td th:text="${item.id}">1</td>
-            <td th:text="${item.name}">Sample Item</td>
-            <td th:text="${item.price}">100</td>
-            <td th:text="${item.description}">This is a sample item.</td>
+            <td><a th:href="@{/item/{itemId}(itemId=${item.id})}" th:text="${item.id}">1</a></td>
+            <td><a th:href="@{/item/{itemId}(itemId=${item.id})}" th:text="${item.name}">Sample Item</a></td>
+            <td><a th:href="@{/item/{itemId}(itemId=${item.id})}" th:text="${item.price}">100</a></td>
+            <td><a th:href="@{/item/{itemId}(itemId=${item.id})}" th:text="${item.description}">This is a sample item.</a></td>
         </tr>
         </tbody>
     </table>

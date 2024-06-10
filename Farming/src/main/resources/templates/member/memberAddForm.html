@@ -35,10 +35,11 @@
 </head>
 <body>
 <div class="container">
-    <form action="/member/add" method="post">
+    <form action="/member/add" th:object="${member}" method="post">
         <div class="form-group">
             <label for="username">이름</label>
-            <input type="text" id="username" name="username" placeholder="input your name">
+            <input type="text" id="username" th:field="*{username}" th:errorclass="field-error" name="username" placeholder="input your name">
+            <div class=field-error th:errors="*{username}"></div>
         </div>
         <button type="submit">submit</button>
     </form>

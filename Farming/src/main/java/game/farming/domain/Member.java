@@ -1,11 +1,18 @@
 package game.farming.domain;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.NonNull;
+import org.hibernate.validator.constraints.Range;
 
 @Data
 public class Member {
     private Long id;
+    @NotNull
+    @NotBlank
     private String username;
+    @Range(min = 0 , max = 99999)
     private Long money;
 
     public Long getId() {
