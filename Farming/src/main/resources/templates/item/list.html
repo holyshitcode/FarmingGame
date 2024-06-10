@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Item List</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f8ff;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .table th, .table td {
+            vertical-align: middle;
+        }
+        .btn-custom {
+            background-color: #2e8b57;
+            color: white;
+        }
+        .btn-custom:hover {
+            background-color: #3cb371;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center">Item List</h1>
+    <div class="text-right mb-3">
+        <a href="/item/add" class="btn btn-custom">Add Item</a>
+        <a href="/" class="btn btn-secondary">처음으로</a>
+    </div>
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${items}">
+            <td th:text="${item.id}">1</td>
+            <td th:text="${item.name}">Sample Item</td>
+            <td th:text="${item.price}">100</td>
+            <td th:text="${item.description}">This is a sample item.</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
