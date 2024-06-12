@@ -1,6 +1,7 @@
 package game.farming.repository;
 
 import game.farming.domain.Member;
+import org.apache.el.stream.Stream;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 

@@ -5,6 +5,7 @@ import game.farming.repository.MemberRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MemberService {
@@ -26,5 +27,8 @@ public class MemberService {
 
     public List<Member> findAllMember(){
         return memberRepository.findAll();
+    }
+    public Optional<Member> findByLoginId(String loginId) {
+        return memberRepository.findAll().stream().filter(member -> member.getLoginId().equals(loginId)).findFirst();
     }
 }

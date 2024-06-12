@@ -39,7 +39,7 @@ public class MemberController {
         }
         memberService.join(member);
         log.info("member: {}", member);
-        return "redirect:/member/list";
+        return "redirect:/";
     }
     @GetMapping("/list")
     public String memberList(Model model) {
@@ -47,20 +47,15 @@ public class MemberController {
         model.addAttribute("members", members);
         return "member/memberList";
     }
+
     @PostConstruct
     public void init() {
-        Member member = new Member("admin");
-        Member member1 = new Member("Jiheon");
-        Member member2 = new Member("Jun e");
-        Member member3 = new Member("Dong pil");
-        member.setMoney(1000000000L);
-        member1.setMoney(10000L);
-        member2.setMoney(10000L);
-        member3.setMoney(10000L);
+        Member member = new Member();
+        member.setLoginId("test");
+        member.setPassword("test1");
+        member.setId(9999L);
+        member.setName("Admin");
         memberService.join(member);
-        memberService.join(member1);
-        memberService.join(member2);
-        memberService.join(member3);
-
     }
+
 }

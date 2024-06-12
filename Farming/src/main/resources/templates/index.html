@@ -36,21 +36,43 @@
         }
         .links {
             text-align: center;
+            margin-bottom: 20px;
         }
         .links a {
             margin: 0 10px;
+        }
+        .logout-button {
+            display: block;
+            width: 100%;
+            padding: 10px 0;
+            margin: 20px 0;
+            background-color: #2e8b57;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .logout-button:hover {
+            background-color: #3cb371;
         }
     </style>
 </head>
 <body>
 <div class="container">
     <h1>Welcome to Farming Game</h1>
+    <h4 class="mb-3" th:text="|UserName : ${member.name}|">로그인 사용자 이름</h4>
     <div class="links">
-        <a href="/member/add" class="button">Add Member</a>
         <a href="/member/list" class="button">View Members</a>
         <a href="/item/add" class="button">Add Item</a>
         <a href="/item/list" class="button">View Items</a>
     </div>
+    <form th:action="@{/logout}" method="post">
+        <button class="logout-button" type="submit">로그아웃</button>
+    </form>
 </div>
 </body>
 </html>
