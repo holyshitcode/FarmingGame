@@ -43,7 +43,7 @@
         <tbody>
         <tr th:each="item : ${items}">
             <td><a th:href="@{/item/{itemId}(itemId=${item.id})}" th:text="${item.id}">1</a></td>
-            <td><a th:href="@{/item/{itemId}(itemId=${item.id})}" th:text="${item.name}">Sample Item</a></td>
+            <td><a th:href="@{/item/{itemId}(itemId=${item.id})}" th:text="${item.itemName}">Sample Item</a></td>
             <td><a th:href="@{/item/{itemId}(itemId=${item.id})}" th:text="${item.price}">100</a></td>
             <td><a th:href="@{/item/{itemId}(itemId=${item.id})}" th:text="${item.description}">This is a sample item.</a></td>
         </tr>

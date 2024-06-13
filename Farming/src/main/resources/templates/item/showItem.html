@@ -1,9 +1,8 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="utf-8">
     <title>Item Details</title>
-    <link th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             background-color: #f0f8ff;
@@ -60,7 +59,7 @@
     </div>
     <div>
         <label class="field-label">상품명</label>
-        <p class="field-value" th:text="${item.name}">Name</p>
+        <p class="field-value" th:text="${item.itemName}">Name</p>
     </div>
     <div>
         <label class="field-label">가격</label>
@@ -70,6 +69,12 @@
         <label class="field-label">설명</label>
         <p class="field-value" th:text="${item.description}">Description</p>
     </div>
+
+        첨부파일: <a th:if="${item.attachFile}" th:href="|/item/attach/${item.id}|" th:text="${item.getAttachFile().getUploadFileName()}" /><br/>
+        <img th:each="imageFile : ${item.imageFiles}" th:src="|/item/images/${imageFile.getStoreFileName()}|" th:field="item" width="300" height="300" alt=""/>
+
+
+
 
     <hr class="my-4">
 

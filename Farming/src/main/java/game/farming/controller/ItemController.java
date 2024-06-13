@@ -1,14 +1,22 @@
 package game.farming.controller;
 
 
+import game.farming.controller.form.ItemForm;
 import game.farming.domain.Item;
+import game.farming.domain.UploadFile;
 import game.farming.repository.ItemRepository;
 import game.farming.repository.MemoryItemRepository;
+import game.farming.service.FileStoreService;
 import game.farming.service.ItemService;
-import game.farming.validators.ItemValidator;
+
 import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +24,12 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.util.UriUtils;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -24,13 +38,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class ItemController {
 
     private final ItemService itemService;
-    private final ItemValidator itemValidator;
+    private final FileStoreService fileStoreService;
 
 
-    @InitBinder
-    public void init(WebDataBinder binder) {
-        binder.addValidators(itemValidator);
-    }
 
     @GetMapping("/add")
     public String addItemForm(Model model) {
@@ -38,15 +48,24 @@ public class ItemController {
         return "item/addItem";
     }
     @PostMapping("/add")
-    public String addItem(@Validated @ModelAttribute Item item, BindingResult bindingResult, RedirectAttributes redirectAttributes,Model model) {
+    public String addItem(@Validated @ModelAttribute ItemForm form, BindingResult bindingResult, RedirectAttributes redirectAttributes) throws IOException {
         if (bindingResult.hasErrors()) {
             log.info("errors={}", bindingResult.getAllErrors());
             return "item/addItem";
         }
-        log.info("errors={}", bindingResult.getAllErrors());
-
+        UploadFile attachFile = fileStoreService.storeFile(form.getAttachFile());
+        List<UploadFile> storeImageFiles = fileStoreService.storeFiles(form.getImageFiles());
+        //데이터저장
+        Item item = new Item();
+        item.setItemName(form.getItemName());
+        item.setDescription(form.getDescription());
+        item.setAttachFile(attachFile);
+        item.setPrice(form.getPrice());
+        item.setImageFiles(storeImageFiles);
         itemService.save(item);
-        return "redirect:/item/list";
+        log.info("item={}", item);
+        redirectAttributes.addAttribute("itemId", item.getId());
+        return "redirect:/item/{itemId}";
     }
     @GetMapping("/edit/{itemId}")
     public String editItemForm(@PathVariable Long itemId, Model model) {
@@ -67,21 +86,50 @@ public class ItemController {
     public String showItemForm(@PathVariable Long itemId, Model model) {
         Item findItem = itemService.findById(itemId);
         model.addAttribute("item", findItem);
-        return "item/showItem";
+        return "/item/showItem";
     }
+
     @GetMapping("/list")
     public String listItems(Model model) {
         model.addAttribute("items", itemService.findAll());
 
         return "item/list";
     }
+
     @PostMapping("/delete")
     public String deleteItem(@RequestParam("id") Long itemId, RedirectAttributes redirectAttributes) {
         itemService.delete(itemId);
         redirectAttributes.addFlashAttribute("message", "Item deleted");
         return "redirect:/item/list";
     }
-    @PostConstruct
+
+    @ResponseBody
+    @GetMapping(value="/images/{filename}")
+    public Resource downloadImage(@Validated @PathVariable String filename) throws MalformedURLException {
+        log.info("Downloading image {}", "file:"+fileStoreService.getFullPath(filename));
+        String filePath = fileStoreService.getFullPath(filename);
+
+        return new UrlResource("file:" + filePath);
+    }
+
+
+    @GetMapping("/attach/{itemId}")
+    public ResponseEntity<Resource> downloadAttach(@PathVariable Long itemId) throws MalformedURLException {
+        Item item = itemService.findById(itemId);
+        String storeFileName = item.getAttachFile().getStoreFileName();
+        String uploadFileName = item.getAttachFile().getUploadFileName();
+
+        UrlResource resource = new UrlResource("file:" + fileStoreService.getFullPath(storeFileName));
+        log.info("uploadFileName={}", uploadFileName);
+
+        String encode = UriUtils.encode(uploadFileName, StandardCharsets.UTF_8);
+        String contentDisposition = "attachment; filename=\"" + encode + "\"";
+        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,contentDisposition)
+                .body(resource);
+    }
+
+
+    //@PostConstruct
     public void initItems(){
         Item newItem = new Item("book","old book",10000);
         Item newItem1 = new Item("car","ferrari",10000000);

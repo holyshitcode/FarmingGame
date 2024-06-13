@@ -24,11 +24,15 @@
 <body>
 <div class="container">
     <h1 class="text-center">Add Item</h1>
-    <form action="/item/add" th:object="${item}" method="post">
+    <form action="/item/add" th:object="${item}"  enctype="multipart/form-data" method="post">
+        <ul>
+            <li>첨부파일<input type="file" name="attachFile" ></li>
+            <li>이미지 파일들<input type="file" multiple="multiple" name="imageFiles" ></li>
+        </ul>
         <div class="form-group">
             <label for="name">Item Name</label>
-            <input type="text" class="form-control" th:field="${item.name}" th:errorclass="field-error" id="name" name="name" placeholder="Enter item name">
-            <div th:errors="*{name}" ></div>
+            <input type="text" class="form-control" th:field="${item.itemName}" th:errorclass="field-error" id="name" name="name" placeholder="Enter item name">
+            <div th:errors="*{itemName}" ></div>
 
         </div>
 

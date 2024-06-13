@@ -24,6 +24,6 @@ public class FilterConfig implements WebMvcConfigurer {
         registry.addInterceptor(new URLInterceptor())
                 .order(1)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/","/member/add","/login","logout","/css/**","/*.ico","/error");
+                .excludePathPatterns("/","/member/add","/login","logout","/css/**","/*.ico","/error","/images/**");
     }
 }

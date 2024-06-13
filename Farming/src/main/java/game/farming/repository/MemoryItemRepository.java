@@ -32,7 +32,7 @@ public class MemoryItemRepository implements ItemRepository {
     @Override
     public Item update(Long id,Item updateParam) {
         Item findItem = findById(id);
-        findItem.setName(updateParam.getName());
+        findItem.setItemName(updateParam.getItemName());
         findItem.setPrice(updateParam.getPrice());
         findItem.setDescription(updateParam.getDescription());
         return findItem;
