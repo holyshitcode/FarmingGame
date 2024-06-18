@@ -4,24 +4,19 @@ package game.farming.controller;
 import game.farming.controller.form.ItemForm;
 import game.farming.domain.Item;
 import game.farming.domain.UploadFile;
-import game.farming.repository.ItemRepository;
-import game.farming.repository.MemoryItemRepository;
 import game.farming.service.FileStoreService;
 import game.farming.service.ItemService;
 
-import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriUtils;
@@ -48,13 +43,13 @@ public class ItemController {
         return "item/addItem";
     }
     @PostMapping("/add")
-    public String addItem(@Validated @ModelAttribute ItemForm form, BindingResult bindingResult, RedirectAttributes redirectAttributes) throws IOException {
+    public String addItem(@Validated @ModelAttribute("item") ItemForm form, BindingResult bindingResult, RedirectAttributes redirectAttributes) throws IOException {
         if (bindingResult.hasErrors()) {
             log.info("errors={}", bindingResult.getAllErrors());
             return "item/addItem";
         }
         UploadFile attachFile = fileStoreService.storeFile(form.getAttachFile());
-        List<UploadFile> storeImageFiles = fileStoreService.storeFiles(form.getImageFiles());
+        UploadFile storeImageFiles = fileStoreService.storeFile(form.getImageFiles());
         //데이터저장
         Item item = new Item();
         item.setItemName(form.getItemName());

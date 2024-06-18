@@ -6,6 +6,7 @@ import game.farming.service.MemberService;
 import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +22,7 @@ import java.util.List;
 @Slf4j
 @Controller
 @RequestMapping("/member")
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class MemberController {
 
     private final MemberService memberService;
@@ -48,14 +49,13 @@ public class MemberController {
         return "member/memberList";
     }
 
-    @PostConstruct
+    /*@PostConstruct
     public void init() {
         Member member = new Member();
         member.setLoginId("test");
         member.setPassword("test1");
-        member.setId(9999L);
         member.setName("Admin");
         memberService.join(member);
-    }
+    }*/
 
 }

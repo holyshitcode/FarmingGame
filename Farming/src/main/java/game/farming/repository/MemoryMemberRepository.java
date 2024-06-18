@@ -1,3 +1,4 @@
+/*
 package game.farming.repository;
 
 import game.farming.domain.Member;
@@ -38,3 +39,4 @@ public class MemoryMemberRepository implements MemberRepository {
 
 
 }
+*/

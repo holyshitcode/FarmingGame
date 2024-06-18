@@ -10,6 +10,6 @@ public interface ItemRepository {
     public Item save(Item item);
     public Item findById(Long id);
     public List<Item> findAll();
-    public Item update(Long id, Item item);
+    public void update(Long id, Item item);
     public void delete(Long id);
 }

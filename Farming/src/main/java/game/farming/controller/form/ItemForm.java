@@ -1,8 +1,6 @@
 package game.farming.controller.form;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,17 +12,19 @@ public class ItemForm {
 
     private long ItemId;
     @NotNull
+    @NotEmpty
     private String itemName;
 
 
-    private List<MultipartFile> imageFiles;
+    private MultipartFile imageFiles;
 
     private MultipartFile attachFile;
 
-
+    @NotEmpty
     private String description;
 
-
     @NotNull
+    @Min(0)
+    @Max(1000000000)
     private int price;
 }

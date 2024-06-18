@@ -1,3 +1,4 @@
+/*
 package game.farming.repository;
 
 import game.farming.domain.Member;
@@ -41,4 +42,4 @@ class MemoryMemberRepositoryTest {
         System.out.println("member = " + member);
         Assertions.assertThat(result).isEqualTo(member);
     }
-}
+}*/

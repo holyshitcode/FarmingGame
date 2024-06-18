@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface MemberRepository {
-    public Member findByUsername(String username,Long id);
+    public Member findByUsername(String username);
     public Member findById(Long id);
     public Member save(Member member);
     public List<Member> findAll();

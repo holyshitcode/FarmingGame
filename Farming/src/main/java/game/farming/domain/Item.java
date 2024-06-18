@@ -1,22 +1,38 @@
 package game.farming.domain;
 
 
-import jakarta.validation.constraints.NotNull;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
-import lombok.Getter;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 @Data
+@Entity
 public class Item {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String itemName;
-    private String description;
-    private int price;
 
+    @NotEmpty
+    private String itemName;
+
+    @NotEmpty
+    private String description;
+
+
+    @Min(0)
+    @Max(1000000000)
+    private Integer price;
+
+    @OneToOne
+    @JoinColumn(name = "attach_file_id")
     private UploadFile attachFile;
-    private List<UploadFile> imageFiles;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "image_files_id")
+    private UploadFile imageFiles;
 
 
 
@@ -28,6 +44,7 @@ public class Item {
         this.description = description;
         this.price = price;
     }
+
 
 
 }
