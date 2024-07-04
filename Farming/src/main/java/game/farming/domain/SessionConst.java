@@ -1,5 +1,5 @@
 package game.farming.domain;
 
-public class SessionConst {
+public abstract class SessionConst {
     public static final String LOGIN_MEMBER = "loginMember";
 }

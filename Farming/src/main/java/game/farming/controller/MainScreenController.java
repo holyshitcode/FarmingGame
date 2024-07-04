@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 public class MainScreenController {
 
     @GetMapping("/")
-    public String homeLoginV3Spring(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember, Model model){
+    public String sessionValidate(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember, Model model){
         //세션에 데이터가없으면 홈으로
         if(loginMember==null){
             return "home";
@@ -23,7 +23,7 @@ public class MainScreenController {
 
     }
     @GetMapping("/main")
-    public String MainModel(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember,Model model){
+    public String TrueSessionValidated(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember,Model model){
         model.addAttribute("member", loginMember);
 
         return "index";
