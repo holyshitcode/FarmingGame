@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98f1a77d-0500-4a39-858b-6554a8f7dbd4" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/src/domain/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/Member.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Farming/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../Farming/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Farming/src/main/java/game/farming/domain/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Farming/src/main/java/game/farming/domain/Member.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Farming/src/main/java/game/farming/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Farming/src/main/java/game/farming/service/MemberService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Farming/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../Farming/src/main/resources/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Farming/src/test/java/game/farming/service/MemberServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Farming/src/test/java/game/farming/service/MemberServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,21 +26,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "holyshitcode"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;holyshitcode&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/holyshitcode/FarmingGame.git",
-    "accountId": "0ef4b7fc-d2a0-4111-96cf-38cb66f1f29b"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/holyshitcode/FarmingGame.git&quot;,
+    &quot;accountId&quot;: &quot;0ef4b7fc-d2a0-4111-96cf-38cb66f1f29b&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2hfqOrFnBDzlXgeGYMPqye3QVB7" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -44,24 +48,24 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17011.79" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17011.79" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
       </set>
     </attachedChunks>
   </component>
@@ -74,6 +78,7 @@
       <option name="presentableId" value="Default" />
       <updated>1717995450709</updated>
       <workItem from="1717995451694" duration="353000" />
+      <workItem from="1722310944626" duration="14000" />
     </task>
     <servers />
   </component>

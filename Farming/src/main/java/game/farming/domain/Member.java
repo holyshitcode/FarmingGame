@@ -1,9 +1,6 @@
 package game.farming.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 
@@ -20,6 +17,10 @@ public class Member {
     private String name;
     @NotEmpty
     private String password;
+
+    @OneToOne
+    @JoinColumn(name = "player_id")
+    private Player player;
 
     public Member(String name, String loginId, String password) {
         this.loginId = loginId;
