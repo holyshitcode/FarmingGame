@@ -39,6 +39,5 @@ public class MemberService {
     public void getPlayer(Long memberId, Player player) {
         Member foundMember = memberRepository.findById(memberId);
         foundMember.setPlayer(player);
-        memberRepository.save(foundMember);
     }
 }

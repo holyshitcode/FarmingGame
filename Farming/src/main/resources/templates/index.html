@@ -6,25 +6,33 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #e9f7ef;
-            color: #2e8b57;
+            background-color: #f4f7f6;
+            color: #333;
             margin: 0;
             padding: 0;
         }
         .container {
             max-width: 800px;
-            margin: 0 auto;
+            margin: 50px auto;
             padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
         }
         h1 {
             text-align: center;
             margin-bottom: 20px;
             color: #2e8b57;
         }
+        h4 {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+        }
         .button {
             display: inline-block;
             padding: 10px 20px;
-            margin: 10px 0;
+            margin: 10px;
             background-color: #2e8b57;
             color: white;
             text-decoration: none;
@@ -44,9 +52,9 @@
         .logout-button {
             display: block;
             width: 100%;
-            padding: 10px 0;
-            margin: 20px 0;
-            background-color: #2e8b57;
+            padding: 15px 0;
+            margin: 30px 0;
+            background-color: #e74c3c;
             color: white;
             text-decoration: none;
             border: none;
@@ -54,17 +62,17 @@
             transition: background-color 0.3s ease;
             text-align: center;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 18px;
         }
         .logout-button:hover {
-            background-color: #3cb371;
+            background-color: #c0392b;
         }
     </style>
 </head>
 <body>
 <div class="container">
     <h1>Welcome to Farming Game</h1>
-    <h4 class="mb-3" th:text="|UserName : ${member.name}|">로그인 사용자 이름</h4>
+    <h4 th:text="|UserName : ${member.name}|">로그인 사용자 이름</h4>
     <div class="links">
         <a href="/member/list" class="button">View Members</a>
         <a href="/item/add" class="button">Add Item</a>
@@ -72,8 +80,13 @@
         <a href="/member/players/add" class="button">Add Player</a>
         <a href="/member/players" class="button">View Player</a>
     </div>
+    <div class="links">
+        <a href="/member/info" class="button">View MyInfo</a>
+
+        <a href="/game/farm" class="button">Start Farming</a>
+    </div>
     <form th:action="@{/logout}" method="post">
-        <button class="logout-button" type="submit">로그아웃</button>
+        <button class="logout-button" type="submit">Logout</button>
     </form>
 </div>
 </body>

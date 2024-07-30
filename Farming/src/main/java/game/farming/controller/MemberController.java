@@ -42,7 +42,7 @@ public class MemberController {
     }
 
     @PostMapping("/add")
-    public String memberAdd(@Validated @ModelAttribute Member member, BindingResult bindingResult, Model model) {
+    public String memberAdd(@Validated @ModelAttribute Member member, BindingResult bindingResult, Model model,HttpServletRequest request ) {
         if (bindingResult.hasErrors()) {
             return "member/memberAddForm";
         }
@@ -71,6 +71,7 @@ public class MemberController {
         }
         HttpSession session = request.getSession(false);
         Member attribute =(Member) session.getAttribute(SessionConst.LOGIN_MEMBER);
+        log.info("member: {}", attribute);
         if (attribute.getPlayer() != null) {
             throw new IllegalStateException("중복 플레이어 생성");
         }
@@ -78,6 +79,7 @@ public class MemberController {
         player.setMoney(10000);
         playerService.save(player);
         memberService.getPlayer(attribute.getId(), player);
+        log.info("member: {}", attribute.getPlayer());
 
 
         return "redirect:/member/players";
@@ -87,18 +89,24 @@ public class MemberController {
     @GetMapping("/players")
     public String playerList(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession(false);
-        Member member = (Member)session.getAttribute(SessionConst.LOGIN_MEMBER);
-        model.addAttribute("player", member.getPlayer());
+        Member member1 = (Member)session.getAttribute(SessionConst.LOGIN_MEMBER);
+        Long memberId = member1.getId();
+
+        Member member = memberService.findMember(memberId);
+        Player player = member.getPlayer();
+
+        log.info("memberId: {}", memberId);
+        model.addAttribute("player", player);
         return "member/playerList";
     }
 
-    /*@PostConstruct
-    public void init() {
-        Member member = new Member();
-        member.setLoginId("test");
-        member.setPassword("test1");
-        member.setName("Admin");
-        memberService.join(member);
-    }*/
+    @GetMapping("/info")
+    public String memberInfo(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        Member member = (Member)session.getAttribute(SessionConst.LOGIN_MEMBER);
+        model.addAttribute("member", member);
+        return "member/memberInfo";
+    }
+
 
 }

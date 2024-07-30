@@ -1,0 +1,63 @@
+<!-- src/main/resources/templates/member/view.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Member Information</title>
+    <style>
+        .member-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .member-container h2 {
+            text-align: center;
+            color: #333;
+        }
+        .detail {
+            margin: 10px 0;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .detail label {
+            font-weight: bold;
+            display: block;
+        }
+        .detail span {
+            display: block;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="member-container">
+    <h2>내정보</h2>
+    <div class="detail">
+        <label>Login ID:</label>
+        <span th:text="${member.loginId}"></span>
+    </div>
+    <div class="detail">
+        <label>Name:</label>
+        <span th:text="${member.name}"></span>
+    </div>
+    <div class="detail">
+        <label>Password:</label>
+        <span th:text="${member.password}"></span>
+    </div>
+    <div class="detail" th:if="${member.player != null}">
+        <label>캐릭터 이름:</label>
+        <span th:text="${member.player.playerName}"></span>
+    </div>
+    <div class="detail" th:if="${member.player != null}">
+        <label>소지금:</label>
+        <span th:text="${member.player.money}"></span>
+    </div>
+    <div class="detail" th:if="${member.player != null}">
+        <label>작업자 수:</label>
+        <span th:text="${member.player.workers}"></span>
+    </div>
+</div>
+</body>
+</html>

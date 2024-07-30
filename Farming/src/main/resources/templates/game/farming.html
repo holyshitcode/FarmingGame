@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Farming Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/images/farm-background.jpg');
+            background-size: cover;
+            color: #4d2600;
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin: 20px auto;
+        }
+
+        button {
+            background-color: #8bc34a;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #7cb342;
+        }
+
+        .worker-info {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            display: inline-block;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .worker-info h2 {
+            margin: 0;
+            font-size: 2em;
+        }
+    </style>
+</head>
+<body>
+<h1>농사 시작하기 사용자이름: <span th:text="${member.name}">Player</span></h1>
+
+<form action="#" th:action="@{/game/farm}" th:object="${member}" method="post">
+    <button type="submit">시작</button>
+</form>
+
+<div class="worker-info" th:if="${session.loginMember != null}">
+    <h2>사용가능 인원:<span th:text="${session.loginMember.player.workers}">0</span></h2>
+</div>
+</body>
+</html>

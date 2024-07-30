@@ -4,11 +4,14 @@ package game.farming.domain;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Entity
 @Data
 public class Player {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "player_id")
     private long id;
 
     @OneToOne(mappedBy = "player")
@@ -19,6 +22,10 @@ public class Player {
     private long money;
 
     private int workers;
+
+    @OneToMany
+    @JoinColumn(name = "player_id")
+    private List<Item> item;
 
     public Player() {
     }
